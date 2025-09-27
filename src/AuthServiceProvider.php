@@ -3,6 +3,8 @@
 namespace PixelGuru95\Auth;
 
 use Illuminate\Support\ServiceProvider;
+use PixelGuru95\Auth\Filament\Resources\UserResource;
+use PixelGuru95\Auth\Filament\Resources\RoleResource;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,11 @@ class AuthServiceProvider extends ServiceProvider
 
         // Charger migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        // Enregistrer la ressource Filament
+        \Filament\Facades\Filament::registerResources([
+            UserResource::class,
+            RoleResource::class,
+        ]);
     }
 }
